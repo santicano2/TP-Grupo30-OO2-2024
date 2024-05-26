@@ -5,4 +5,3 @@ Trabajo practico cuatrimestral del grupo 30 para Orientación en Objectos 2.
 - Horacio Matias Ferreira
 - Santiago Cano
 - Jonathan Fernandez
-- Matias Gluszczuk
