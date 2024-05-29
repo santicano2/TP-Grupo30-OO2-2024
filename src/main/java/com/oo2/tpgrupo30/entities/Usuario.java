@@ -22,11 +22,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "User")
+@Table(name = "usuario")
 public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_user")
+	@Column(name = "id_usuario")
 	private int idUsuario;
 
 	@Column(name = "nombre", unique = true, nullable = false)
