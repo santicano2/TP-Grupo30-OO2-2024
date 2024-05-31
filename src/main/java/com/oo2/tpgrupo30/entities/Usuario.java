@@ -1,14 +1,18 @@
 package com.oo2.tpgrupo30.entities;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -36,4 +40,7 @@ public class Usuario {
 	@Column(name = "createdAt", nullable = false)
 	@CreationTimestamp
 	private LocalDateTime createdAt;
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "usuario")
+	private Set<UsuarioRoles> usuarioRoles = new HashSet<UsuarioRoles>();
 }
