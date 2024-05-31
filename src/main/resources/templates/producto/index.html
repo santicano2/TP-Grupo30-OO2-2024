@@ -1,0 +1,39 @@
+<table>
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Costo</th>
+            <th>Precio de venta</th>
+            <th>Cantidad en stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="producto : ${productos}">
+            <td><span th:text="${producto.codigo}" /></td>
+            <td><span th:text="${producto.nombre}" /></td>
+            <td><span th:text="${producto.descripcion}" /></td>
+            <td><span th:text="${producto.costo}" /></td>
+            <td><span th:text="${producto.precioVenta}" /></td>
+            <td><span th:text="${producto.cantidad_en_stock}" /></td>
+            <td>
+                <button><a th:href="@{/productos/edit/{id}(id=${producto.idProducto})}">EDITAR</a></button>
+                <form th:action="@{/productos/delete/{id}(id=${producto.idProducto})}" method="post" style="display:inline;">
+                    <button type="submit">ELIMINAR</button>
+                </form>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<form action="#" th:action="@{/productos/}" th:object="${producto}" method="post">
+    <p>Código: <input type="text" th:field="{codigo}" /></p>
+    <p>Nombre: <input type="text" th:field="{nombre}" /></p>
+    <p>Descripción: <input type="text" th:field="{descripcion}" /></p>
+    <p>Costo: <input type="number" min="1" th:field="{costo}" /></p>
+    <p>Precio de venta: <input type="number" min="1" th:field="{precioVenta}" /></p>
+    <p>Cantidad en stock: <input type="number" min="0" th:field="{cantidad_en_stock}" /></p>
+    <input type="submit" />
+</form>
+
+
