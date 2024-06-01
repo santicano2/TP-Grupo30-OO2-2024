@@ -35,7 +35,7 @@ public class ProductController {
 		model.addObject("producto", new Producto());
 		return model;
 	}
-
+	
 	@PostMapping("/")
 	public RedirectView create(@ModelAttribute("producto") Producto producto) {
 		productService.insertOrUpdate(producto);

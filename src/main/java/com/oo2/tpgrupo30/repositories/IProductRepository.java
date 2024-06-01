@@ -16,4 +16,4 @@ public interface IProductRepository extends JpaRepository<Producto, Serializable
 	public abstract Producto findByNombre(String nombre);
 	public abstract List<Producto> findByNombreOrderByNombreDesc(String nombre);
 
-}
+} 	
