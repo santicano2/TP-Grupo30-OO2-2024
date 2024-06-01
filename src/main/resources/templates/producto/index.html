@@ -27,12 +27,12 @@
     </tbody>
 </table>
 <form action="#" th:action="@{/productos/}" th:object="${producto}" method="post">
-    <p>Código: <input type="text" th:field="{codigo}" /></p>
-    <p>Nombre: <input type="text" th:field="{nombre}" /></p>
-    <p>Descripción: <input type="text" th:field="{descripcion}" /></p>
-    <p>Costo: <input type="number" min="1" th:field="{costo}" /></p>
-    <p>Precio de venta: <input type="number" min="1" th:field="{precioVenta}" /></p>
-    <p>Cantidad en stock: <input type="number" min="0" th:field="{cantidad_en_stock}" /></p>
+    <p>Código: <input type="text" th:field="${producto.codigo}" /></p>
+    <p>Nombre: <input type="text" th:field="${producto.nombre}" /></p>
+    <p>Descripción: <input type="text" th:field="${producto.descripcion}" /></p>
+    <p>Costo: <input type="number" min="1" th:field="${producto.costo}" /></p>
+    <p>Precio de venta: <input type="number" min="1" th:field="${producto.precioVenta}" /></p>
+    <p>Cantidad en stock: <input type="number" min="0" th:field="${producto.cantidad_en_stock}" /></p>
     <input type="submit" />
 </form>
 
