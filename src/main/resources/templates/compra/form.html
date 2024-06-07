@@ -1,0 +1,21 @@
+<body>
+	<h1>Formulario de Compra</h1>
+	<form th:action="@{/compras/create}" th:object="${compra}" method="post">
+		<div>
+			<label>Producto: </label>
+			<select id="productSelect" th:field="*{producto.idProducto}">
+				<option th:each="producto : ${productos}" th:value="${producto.idProducto}"
+					th:text="${producto.nombre + ' - Stock: ' + producto.cantidad_en_stock}"></option>
+			</select>
+		</div>
+		<div>
+			<label for="cantidad">Cantidad:</label>
+			<input type="number" id="cantidad" name="cantidad" min="1" required>
+		</div>
+
+		<div th:if="${#fields.hasErrors('cantidad')}" th:errors="*{cantidad}" style="color: red;"></div>
+
+		<button type="submit">Comprar</button>
+
+	</form>
+</body>
