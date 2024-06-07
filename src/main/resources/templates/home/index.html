@@ -20,7 +20,14 @@
 				type="button"></button>
 			<div class="collapse navbar-collapse" id="navbarResponsive">
 				<ul class="navbar-nav ml-auto">
-					<li class="nav-item"><a class="nav-link" href="/productos/">Productos</a>
+					<li class="nav-item">
+						<a class="nav-link" href="/productos/">PRODUCTOS</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/compras/form">COMPRAR</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/compras/list">VER COMPRAS</a>
 					</li>
 					<li class="nav-item dropdown"><a aria-expanded="false" aria-haspopup="true"
 							class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdownBlog">
@@ -76,20 +83,10 @@
 		</div>
 	</header>
 	<!-- Page Content -->
-	<div class="container">
-		<h1 class="my-2">Vistas de personas</h1>
-		<select class="my-4" id="select-person">
-			<option>...</option>
-			<option th:each="person : ${persons}" th:value="${person.id}">
-				<p th:text="${person.name}" />
-			</option>
-		</select>
-		<div id="div-select-person" class="row"></div>
-	</div>
 	<footer class="py-5 bg-dark">
 		<div class="container">
 			<p class="m-0 text-center text-white">Copyright &copy; Your
-				Website 2018</p>
+				Website 2024</p>
 		</div>
 	</footer>
 	<!-- Bootstrap core JavaScript -->

@@ -2,6 +2,8 @@ package com.oo2.tpgrupo30.entities;
 
 import java.util.List;
 
+import org.hibernate.validator.constraints.Length;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -28,6 +30,7 @@ public class Producto {
 	private int idProducto;
 
 	@Column(name = "codigo", unique = true, nullable = false)
+	@Length(min = 6, max = 6)
 	private String codigo;
 
 	@Column(name = "nombre", nullable = false)
