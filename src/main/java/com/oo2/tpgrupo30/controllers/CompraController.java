@@ -1,5 +1,6 @@
 package com.oo2.tpgrupo30.controllers;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -54,10 +55,11 @@ public class CompraController {
 		}
 
 		compraService.insertOrUpdate(compra);
-		return "redirect:/productos/";
+		return "redirect:/index";
 	}
 	
 	@GetMapping("/list")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
     public ModelAndView list() {
 
         ModelAndView model = new ModelAndView(ViewRouteHelper.COMPRA_LIST);
