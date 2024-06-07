@@ -1,0 +1,23 @@
+<body>
+    <h1>Compra</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>IdCompra</th>
+                <th>IdProducto</th>
+				<th>Producto</th>
+                <th>Cantidad</th>
+                <th>FechaCompra</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="compra : ${compras}">
+                <td th:text="${compra.idCompra}"></td>
+				<td th:text="${compra.producto.idProducto}"></td>
+                <td th:text="${compra.producto.nombre}"></td>
+                <td th:text="${compra.cantidad}"></td>
+                <td th:text="${compra.fechaCompra}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>

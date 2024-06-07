@@ -23,4 +23,5 @@ public class ViewRouteHelper {
 
     // VENTA
     public static final String COMPRA_FORM = "compra/form";
+    public static final String COMPRA_LIST = "compra/list";
 }
