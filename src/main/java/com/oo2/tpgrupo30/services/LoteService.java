@@ -8,7 +8,33 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service
-public class LoteService {
+public class LoteService implements ILoteService{
+
+	@Override
+	public Lote findById(Long id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<Lote> getAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Lote insertOrUpdate(Lote lote) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean remove(Long id) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	
 /*
     @Autowired
     private LoteRepository loteRepository;
