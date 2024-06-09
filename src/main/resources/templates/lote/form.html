@@ -1,22 +1,27 @@
-<form action="#" th:action="@{new}" th:object="${lote}" method="post">
-    <p>ID Lote: <input type="text" th:field="{idLote}" /> </p>
-    <p th:if="${#fields.hasErrors('id_lote')}" th:errors="{id_lote}">Código tiene errores</p>
-
-    <p>Producto: <input type="text" th:field="{nombre}" /> </p>
-    <p th:if="${#fields.hasErrors('id_producto')}" th:errors="{id_producto}">Nombre tiene errores</p>
-
-    <p>Cantidad: <input type="text" th:field="{cantidad}" /> </p>
-    <p th:if="${#fields.hasErrors('cantidad')}" th:errors="{cantidad}">Descripción tiene errores</p>
-
-    <p>Fecha de Ingreso: <input type="number" min="1" th:field="{fechaIngreso}" /> </p>
-    <p th:if="${#fields.hasErrors('fechaIngreso')}" th:errors="{fechaIngreso}">Costo tiene errores</p>
-
-    <p>Proveedor: <input type="number" min="1" th:field="{proveedor}" /> </p>
-    <p th:if="${#fields.hasErrors('proveedor')}" th:errors="{proveedor}">proveedor de venta tiene errores</p>
-
-    <p>Precio de compra: <input type="number" min="0" th:field="{precioCompra}" /> </p>
-    <p th:if="${#fields.hasErrors('precio_compra')}" th:errors="{precio_compra}">Cantidad en stock tiene
-        errores</p>
-
-    <input type="submit" />
+<form th:action="@{/lotes/create}" th:object="${lote}" method="post">
+	<div>
+		<label>Cantidad: </label>
+		<input type="number" min="0" th:field="*{cantidad}" />
+		<p th:if="${#fields.hasErrors('cantidad')}" th:errors="{cantidad}">Cantidad tiene errores</p>
+	</div>
+	<div>
+		<label>Fecha de Ingreso: </label>
+		<input type="date" th:field="*{fechaIngreso}" />
+		<p th:if="${#fields.hasErrors('fechaIngreso')}" th:errors="{fechaIngreso}">Fecha de ingreso tiene errores</p>
+	</div>
+	<div>
+		<label>Proveedor: </label>
+		<input type="text" th:field="*{proveedor}" />
+		<p th:if="${#fields.hasErrors('proveedor')}" th:errors="{proveedor}">Proveedor tiene errores</p>
+	</div>
+	<div>
+		<label>Precio de Compra: </label>
+		<input type="number" step="1" th:field="*{precioCompra}" />
+		<p th:if="${#fields.hasErrors('precioCompra')}" th:errors="{precioCompra}">Precio de compra tiene errores</p>
+	</div>
+	<input type="hidden" th:field="*{producto.idProducto}" />
+	<div>
+		<button type="submit">Guardar</button>
+		<a href="/productos/">Cancelar</a>
+	</div>
 </form>

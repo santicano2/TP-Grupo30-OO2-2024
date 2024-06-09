@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.oo2.tpgrupo30.entities.Compra;
 import com.oo2.tpgrupo30.entities.Producto;
@@ -34,6 +35,8 @@ public class CompraController {
 		model.addAttribute("productos", productService.getAll());
 		return ViewRouteHelper.COMPRA_FORM;
 	}
+
+
 
 	@PostMapping("/create")
 	public String create(@Valid @ModelAttribute("compra") Compra compra, BindingResult bindingResult, Model model) {

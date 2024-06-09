@@ -1,5 +1,8 @@
 package com.oo2.tpgrupo30.controllers;
 
+import java.util.List;
+
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,69 +15,61 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.oo2.tpgrupo30.entities.Lote;
+import com.oo2.tpgrupo30.entities.Producto;
 import com.oo2.tpgrupo30.helpers.ViewRouteHelper;
 import com.oo2.tpgrupo30.services.ILoteService;
+import com.oo2.tpgrupo30.services.IProductService;
 
 import jakarta.validation.Valid;
 
 @Controller
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 @RequestMapping("/lotes")
 public class LoteController {
 
-	private ILoteService loteService;
+	private final ILoteService loteService;
+	private final IProductService productService;
 
-	public LoteController(ILoteService loteService) {
+	public LoteController(ILoteService loteService, IProductService productoService) {
 		this.loteService = loteService;
+		this.productService = productoService;
 	}
 
 	@GetMapping("/")
 	public ModelAndView index() {
 		ModelAndView model = new ModelAndView(ViewRouteHelper.LOTE_INDEX);
 		model.addObject("lotes", loteService.getAll());
-		model.addObject("lote", new Lote());
 		return model;
 	}
 
-	@PostMapping("/")
-	public RedirectView create(@ModelAttribute("lote") Lote lote) {
-		loteService.insertOrUpdate(lote);
-		return new RedirectView(ViewRouteHelper.LOTE_ROOT);
-	}
-
-	@GetMapping("/form")
-	public String lote(Model model) {
-		model.addAttribute("lote", new Lote());
-		return ViewRouteHelper.LOTE_FORM;
-	}
-
-	@PostMapping("/new")
-	public ModelAndView newLote(@Valid @ModelAttribute("lote") Lote lote, BindingResult bindingResult) {
-		ModelAndView m = new ModelAndView();
-		if (bindingResult.hasErrors()) {
-			m.setViewName(ViewRouteHelper.LOTE_FORM);
-		} else {
-			m.setViewName(ViewRouteHelper.LOTE_NEW);
-			m.addObject("lote", lote);
-		}
-		return m;
-	}
-
-	@GetMapping("/edit/{idLote}")
-	public String editLote(@PathVariable("idLote") Long idLote, Model model) {
-		Lote lote = loteService.findById(idLote);
-		if (lote != null) {
+	@GetMapping("/form/{productoId}")
+	public String loteForm(@PathVariable("productoId") int productoId, Model model) {
+		Producto producto = productService.findByidProducto(productoId);
+		if (producto != null) {
+			Lote lote = new Lote();
+			lote.setProducto(producto);
 			model.addAttribute("lote", lote);
-			return ViewRouteHelper.LOTE_UPDATE;
-		} else {
-			return "redirect:/lotes/";
+			return ViewRouteHelper.LOTE_FORM;
 		}
+		return "redirect:/productos/";
 	}
 
+	@PostMapping("/create")
+	public RedirectView create(@Valid @ModelAttribute("lote") Lote lote, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("lote", lote);
+			return new RedirectView(ViewRouteHelper.LOTE_FORM);
+		}
 
-
-	@PostMapping("/delete/{idLote}")
-	public String deleteLote(@PathVariable("idLote") Long idLote) {
-		loteService.remove(idLote);
-		return "redirect:/lotes/";
+		loteService.insertOrUpdate(lote);
+		return new RedirectView("/productos/");
 	}
+
+	@GetMapping("/list/{productoId}")
+	public String listLotes(@PathVariable("productoId") int productoId, Model model) {
+		List<Lote> lotes = loteService.findByProductoIdProducto(productoId);
+		model.addAttribute("lotes", lotes);
+		return ViewRouteHelper.LOTE_LIST;
+	}
+
 }

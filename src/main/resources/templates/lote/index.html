@@ -1,45 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head>
-    <title>Lista de Lotes</title>
+	<meta charset="UTF-8">
+	<title>Lotes del Producto</title>
 </head>
+
 <body>
+    <h1>Lotes del Producto</h1>
     <table>
         <thead>
             <tr>
                 <th>ID</th>
-                <th>ID_Lote</th>
                 <th>Cantidad</th>
                 <th>Fecha de Ingreso</th>
                 <th>Proveedor</th>
-                <th>Precio de compra</th>
-                <th>Acciones</th>
+                <th>Precio de Compra</th>
             </tr>
         </thead>
         <tbody>
             <tr th:each="lote : ${lotes}">
-                <td><span th:text="${lote.idLote}"></span></td>
-                <td><span th:text="${lote.idProducto}"></span></td> <!-- Corrected -->
-                <td><span th:text="${lote.cantidad}"></span></td>
-                <td><span th:text="${lote.fechaIngreso}"></span></td> <!-- Corrected -->
-                <td><span th:text="${lote.proveedor}"></span></td>
-                <td><span th:text="${lote.precioCompra}"></span></td> <!-- Corrected -->
-                <td>
-                    <button><a th:href="@{/lotes/edit/{id}(id=${lote.idLote})}">EDITAR</a></button>
-                    <form th:action="@{/lote/delete/{id}(id=${lote.idLote})}" method="post" style="display:inline;">
-                        <button type="submit">ELIMINAR</button>
-                    </form>
-                </td>
+                <td th:text="${lote.idLote}"></td>
+                <td th:text="${lote.cantidad}"></td>
+                <td th:text="${lote.fechaIngreso}"></td>
+                <td th:text="${lote.proveedor}"></td>
+                <td th:text="${lote.precioCompra}"></td>
             </tr>
         </tbody>
     </table>
-    <form th:action="@{/lotes/}" th:object="${lote}" method="post">
-        <p>ID_Lote: <input type="text" th:field="*{idLote}" /></p> <!-- Corrected -->
-        <p>Cantidad: <input type="text" th:field="*{cantidad}" /></p>
-        <p>Fecha de Ingreso: <input type="text" th:field="*{fechaIngreso}" /></p> <!-- Corrected -->
-        <p>Proveedor: <input type="text" th:field="*{proveedor}" /></p> <!-- Corrected -->
-        <p>Precio de compra: <input type="number" min="0" th:field="*{precioCompra}" /></p> <!-- Corrected -->
-        <input type="submit" value="Guardar" />
-    </form>
 </body>
 </html>

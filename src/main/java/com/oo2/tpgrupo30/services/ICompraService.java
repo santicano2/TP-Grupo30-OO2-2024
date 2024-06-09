@@ -2,16 +2,17 @@ package com.oo2.tpgrupo30.services;
 
 import java.util.List;
 
-import com.oo2.tpgrupo30.entities.Lote;
+import com.oo2.tpgrupo30.entities.Compra;
 
 public interface ICompraService {
 
-    public Lote findById(Long id);
+    public Compra findByIdCompra(int id);
 
-    public List<Lote> getAll();
+    public List<Compra> findByProductoIdProducto(int idProducto);
 
-    public Lote insertOrUpdate(Lote lote);
+    public List<Compra> getAll();
 
-    public boolean remove(Long id);
+    public Compra insertOrUpdate(Compra compra);
 
+    public boolean remove(int id);
 }
