@@ -6,12 +6,14 @@ import com.oo2.tpgrupo30.entities.Lote;
 
 public interface ILoteService {
 
-    public Lote findById(Long id);
+	public Lote findByIdLote(int id);
 
-    public List<Lote> getAll();
+	public List<Lote> findByProductoIdProducto(int productoId);
 
-    public Lote insertOrUpdate(Lote lote);
+	public List<Lote> getAll();
 
-    public boolean remove(Long id);
+	public Lote insertOrUpdate(Lote lote);
+
+	public boolean remove(int id);
 
 }
