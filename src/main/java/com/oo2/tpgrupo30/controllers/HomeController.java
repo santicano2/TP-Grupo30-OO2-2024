@@ -13,6 +13,7 @@ import com.oo2.tpgrupo30.helpers.ViewRouteHelper;
 @Controller
 @RequestMapping("/")
 public class HomeController {
+	
 
 	@GetMapping("/index")
 	public ModelAndView index() {
@@ -26,4 +27,6 @@ public class HomeController {
 	public RedirectView redirectToHomeIndex() {
 		return new RedirectView(ViewRouteHelper.ROUTE_INDEX);
 	}
+	
+	
 }

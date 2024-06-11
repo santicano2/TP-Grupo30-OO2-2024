@@ -1,37 +1,32 @@
-<table>
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>ID_Lote</th>
-            <th>Cantidad</th>
-            <th>FechaIngreso de ingreso</th>
-            <th>Proveedor</th>
-            <th>Precio de compra</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="lote : ${lotes}">
-            <td><span th:text="${lote.id_lote}" /></td>
-            <td><span th:text="${producto.id_producto}" /></td>
-            <td><span th:text="${lote.cantidad}" /></td>
-            <td><span th:text="${lote.fecha_ingreso}" /></td>
-            <td><span th:text="${lote.proveedor}" /></td>
-            <td><span th:text="${lote.precio_compra}" /></td>
-            <td>
-                <button><a th:href="@{/lotes/edit/{id}(id=${lote.idLote})}">EDITAR</a></button>
-                <form th:action="@{/lote/delete/{id}(id=${lote.idLote})}" method="post" style="display:inline;">
-                    <button type="submit">ELIMINAR</button>
-                </form>
-            </td>
-        </tr>
-    </tbody>
-</table>
-<form action="#" th:action="@{/productos/}" th:object="${producto}" method="post">
-    <p>Código: <input type="text" th:field="{codigo}" /></p>
-    <p>Nombre: <input type="text" th:field="{nombre}" /></p>
-    <p>Descripción: <input type="text" th:field="{descripcion}" /></p>
-    <p>Costo: <input type="number" min="1" th:field="{costo}" /></p>
-    <p>Precio de venta: <input type="number" min="1" th:field="{precioVenta}" /></p>
-    <p>Cantidad en stock: <input type="number" min="0" th:field="{cantidad_en_stock}" /></p>
-    <input type="submit" />
-</form>
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Lotes del Producto</title>
+</head>
+
+<body>
+    <h1>Lotes del Producto</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Cantidad</th>
+                <th>Fecha de Ingreso</th>
+                <th>Proveedor</th>
+                <th>Precio de Compra</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="lote : ${lotes}">
+                <td th:text="${lote.idLote}"></td>
+                <td th:text="${lote.cantidad}"></td>
+                <td th:text="${lote.fechaIngreso}"></td>
+                <td th:text="${lote.proveedor}"></td>
+                <td th:text="${lote.precioCompra}"></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
