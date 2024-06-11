@@ -13,4 +13,4 @@ public interface ICompraRepository extends JpaRepository<Compra, Serializable> {
     public abstract Compra findByIdCompra(int id);
 
     public abstract List<Compra> findByProductoIdProducto(int idProducto);
-} 	
+}

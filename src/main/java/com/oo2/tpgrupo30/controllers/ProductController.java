@@ -1,5 +1,6 @@
 package com.oo2.tpgrupo30.controllers;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -18,6 +19,7 @@ import com.oo2.tpgrupo30.services.IProductService;
 import jakarta.validation.Valid;
 
 @Controller
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 @RequestMapping("/productos")
 public class ProductController {
 

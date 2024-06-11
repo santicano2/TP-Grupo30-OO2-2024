@@ -1,5 +1,6 @@
 package com.oo2.tpgrupo30.entities;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -43,5 +44,5 @@ public class Compra {
 
     @Column(name = "fecha_compra", nullable = false)
     @CreationTimestamp
-    private LocalDateTime fechaCompra;
+    private LocalDate fechaCompra;
 }
