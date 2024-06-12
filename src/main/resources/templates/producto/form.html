@@ -1,22 +1,37 @@
-<form action="#" th:action="@{new}" th:object="${producto}" method="post">
-	<p>Código: <input type="text" maxlength="6" minlength="6" th:field="{codigo}" /> </p>
-	<p th:if="${#fields.hasErrors('codigo')}" th:errors="{codigo}">Código tiene errores</p>
+<!DOCTYPE html>
+<html>
 
-	<p>Nombre: <input type="text" th:field="{nombre}" /> </p>
-	<p th:if="${#fields.hasErrors('nombre')}" th:errors="{nombre}">Nombre tiene errores</p>
+<head>
+	<meta charset="UTF-8">
+	<title>Crear producto</title>
+</head>
 
-	<p>Descripción: <input type="text" th:field="{descripcion}" /> </p>
-	<p th:if="${#fields.hasErrors('descripcion')}" th:errors="{descripcion}">Descripción tiene errores</p>
+<body>
+	<form action="#" th:action="@{/productos/}" th:object="${producto}" method="post">
+		<p>Código: <input type="text" maxlength="6" minlength="6" th:field="*{codigo}" /></p>
+		<p th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}">Código tiene errores</p>
 
-	<p>Costo: <input type="number" min="1" th:field="{costo}" /> </p>
-	<p th:if="${#fields.hasErrors('costo')}" th:errors="{costo}">Costo tiene errores</p>
+		<p>Nombre: <input type="text" th:field="*{nombre}" /></p>
+		<p th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Nombre tiene errores</p>
 
-	<p>Precio de venta: <input type="number" min="1" th:field="{precioVenta}" /> </p>
-	<p th:if="${#fields.hasErrors('precioVenta')}" th:errors="{precioVenta}">Precio de venta tiene errores</p>
+		<p>Descripción: <input type="text" th:field="*{descripcion}" /></p>
+		<p th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}">Descripción tiene errores</p>
 
-	<p>Cantidad en stock: <input type="number" min="0" th:field="{cantidad_en_stock}" /> </p>
-	<p th:if="${#fields.hasErrors('cantidad_en_stock')}" th:errors="{cantidad_en_stock}">Cantidad en stock tiene
-		errores</p>
+		<p>Costo: <input type="number" min="1" th:field="*{costo}" /></p>
+		<p th:if="${#fields.hasErrors('costo')}" th:errors="*{costo}">Costo tiene errores</p>
 
-	<input type="submit" />
-</form>
+		<p>Precio de venta: <input type="number" min="1" th:field="*{precioVenta}" /></p>
+		<p th:if="${#fields.hasErrors('precioVenta')}" th:errors="*{precioVenta}">Precio de venta tiene errores</p>
+
+		<p>Cantidad en stock: <input type="number" min="0" th:field="*{cantidad_en_stock}" /></p>
+		<p th:if="${#fields.hasErrors('cantidad_en_stock')}" th:errors="*{cantidad_en_stock}">Cantidad en stock tiene
+			errores</p>
+
+		<p>Stock mínimo: <input type="number" min="0" th:field="*{cantidadMinima}" /></p>
+		<p th:if="${#fields.hasErrors('cantidadMinima')}" th:errors="*{cantidadMinima}">Stock mínimo tiene errores</p>
+
+		<input type="submit" />
+	</form>
+</body>
+
+</html>
