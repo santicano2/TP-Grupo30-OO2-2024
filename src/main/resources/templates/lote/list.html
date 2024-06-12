@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
+
 <head>
 	<meta charset="UTF-8">
 	<title>Lotes del Producto</title>
@@ -11,6 +12,8 @@
 		<thead>
 			<tr>
 				<th>ID</th>
+				<th>ID Producto</th>
+				<th>Nombre producto</th>
 				<th>Cantidad</th>
 				<th>Fecha de Ingreso</th>
 				<th>Proveedor</th>
@@ -20,6 +23,8 @@
 		<tbody>
 			<tr th:each="lote : ${lotes}">
 				<td th:text="${lote.idLote}"></td>
+				<td th:text="${lote.producto.idProducto}"></td>
+				<td th:text="${lote.producto.nombre}"></td>
 				<td th:text="${lote.cantidad}"></td>
 				<td th:text="${lote.fechaIngreso}"></td>
 				<td th:text="${lote.proveedor}"></td>
