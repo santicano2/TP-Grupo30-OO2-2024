@@ -1,32 +1,37 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html>
 
 <head>
 	<meta charset="UTF-8">
-	<title>Lotes del Producto</title>
+	<title>Lotes</title>
 </head>
 
 <body>
-    <h1>Lotes del Producto</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Cantidad</th>
-                <th>Fecha de Ingreso</th>
-                <th>Proveedor</th>
-                <th>Precio de Compra</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr th:each="lote : ${lotes}">
-                <td th:text="${lote.idLote}"></td>
-                <td th:text="${lote.cantidad}"></td>
-                <td th:text="${lote.fechaIngreso}"></td>
-                <td th:text="${lote.proveedor}"></td>
-                <td th:text="${lote.precioCompra}"></td>
-            </tr>
-        </tbody>
-    </table>
+	<h1>Lotes</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>ID</th>
+				<th>ID Producto</th>
+				<th>Nombre producto</th>
+				<th>Cantidad</th>
+				<th>Fecha de Ingreso</th>
+				<th>Proveedor</th>
+				<th>Precio de Compra</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="lote : ${lotes}">
+				<td th:text="${lote.idLote}"></td>
+				<td th:text="${lote.producto.idProducto}"></td>
+				<td th:text="${lote.producto.nombre}"></td>
+				<td th:text="${lote.cantidad}"></td>
+				<td th:text="${lote.fechaIngreso}"></td>
+				<td th:text="${lote.proveedor}"></td>
+				<td th:text="${lote.precioCompra}"></td>
+			</tr>
+		</tbody>
+	</table>
 </body>
+
 </html>

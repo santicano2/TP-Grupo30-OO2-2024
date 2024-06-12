@@ -1,31 +1,44 @@
-<form th:action="@{/productos/update/{idProducto}(idProducto=${producto.idProducto})}" th:object="${producto}"
-	method="post">
-	<div>
-		<label>Código: </label>
-		<input type="text" maxlength="6" minlength="6" th:field="*{codigo}" readonly="readonly" />
-	</div>
-	<div>
-		<label>Nombre: </label>
-		<input type="text" th:field="*{nombre}" />
-	</div>
-	<div>
-		<label>Descripción: </label>
-		<input type="text" th:field="*{descripcion}" />
-	</div>
-	<div>
-		<label>Costo: </label>
-		<input type="number" min="1" th:field="*{costo}" />
-	</div>
-	<div>
-		<label>Precio de venta: </label>
-		<input type="number" min="1" th:field="*{precioVenta}" />
-	</div>
-	<div>
-		<label>Cantidad en stock: </label>
-		<input type="number" min="0" th:field="*{cantidad_en_stock}" />
-	</div>
-	<div>
-		<button type="submit">Guardar</button>
-		<a href="/productos/">Cancelar</a>
-	</div>
-</form>
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>Actualizar producto</title>
+</head>
+
+<body>
+	<form th:action="@{/productos/update/{idProducto}(idProducto=${producto.idProducto})}" th:object="${producto}"
+		method="post">
+		<div>
+			<label>Código: </label>
+			<input type="text" maxlength="6" minlength="6" th:field="*{codigo}" />
+		</div>
+		<div>
+			<label>Nombre: </label>
+			<input type="text" th:field="*{nombre}" />
+		</div>
+		<div>
+			<label>Descripción: </label>
+			<input type="text" th:field="*{descripcion}" />
+		</div>
+		<div>
+			<label>Costo: </label>
+			<input type="number" min="1" th:field="*{costo}" />
+		</div>
+		<div>
+			<label>Precio de venta: </label>
+			<input type="number" min="1" th:field="*{precioVenta}" />
+		</div>
+		<div>
+			<label>Stock mínimo: </label>
+			<input type="number" min="0" th:field="*{cantidadMinima}" />
+		</div>
+		<input hidden type="number" min="0" th:field="*{cantidad_en_stock}" />
+		<div>
+			<button type="submit">Guardar</button>
+			<a href="/productos/">Cancelar</a>
+		</div>
+	</form>
+</body>
+
+</html>

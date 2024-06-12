@@ -49,6 +49,9 @@ public class Producto {
 	@Column(name = "cantidad_en_stock", nullable = false)
 	private int cantidad_en_stock;
 
+	@Column(name = "cantidad_minima", nullable = false)
+	private int cantidadMinima;
+
 	@OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
 	private List<Lote> lotes = new ArrayList<>();
 }

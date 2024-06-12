@@ -31,14 +31,11 @@ public class ProductController {
 
 	@GetMapping("/")
 	public ModelAndView index() {
-
 		ModelAndView model = new ModelAndView(ViewRouteHelper.PRODUCT_INDEX);
 		model.addObject("productos", productService.getAll());
 		model.addObject("producto", new Producto());
 		return model;
 	}
-	
-
 
 	@PostMapping("/")
 	public RedirectView create(@ModelAttribute("producto") Producto producto) {
