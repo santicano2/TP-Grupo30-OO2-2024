@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.oo2.tpgrupo30.entities.Lote;
 
 @Repository("loteRepository")
-public interface LoteRepository extends JpaRepository<Lote, Serializable> {
+public interface ILoteRepository extends JpaRepository<Lote, Serializable> {
 	public abstract Lote findByIdLote(int id);
 
 	public abstract Lote findByPrecioCompra(double precioCompra);

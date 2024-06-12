@@ -55,13 +55,24 @@ public class LoteController {
 	}
 
 	@PostMapping("/create")
-	public RedirectView create(@Valid @ModelAttribute("lote") Lote lote, BindingResult bindingResult, Model model) {
+	public RedirectView createLote(@Valid @ModelAttribute("lote") Lote lote, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
 			model.addAttribute("lote", lote);
 			return new RedirectView(ViewRouteHelper.LOTE_FORM);
 		}
 
+		// Verificar si el producto asociado al lote existe en la base de datos
+		Producto producto = productService.findByidProducto(lote.getProducto().getIdProducto());
+		if (producto == null) {
+			return new RedirectView(ViewRouteHelper.LOTE_FORM);
+		}
+
+		// Establecer el producto en el lote
+		lote.setProducto(producto);
+
+		// Guardar el lote
 		loteService.insertOrUpdate(lote);
+
 		return new RedirectView("/productos/");
 	}
 
