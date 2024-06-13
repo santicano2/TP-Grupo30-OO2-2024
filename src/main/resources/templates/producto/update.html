@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html layout:decorate="~{layout}">
 
 <head>
 	<meta charset="UTF-8">
 	<title>Actualizar producto</title>
 </head>
 
-<body>
+<body layout:fragment="main-content">
+	<h1>Actualizar producto</h1>
 	<form th:action="@{/productos/update/{idProducto}(idProducto=${producto.idProducto})}" th:object="${producto}"
 		method="post">
 		<div>
@@ -35,8 +36,8 @@
 		</div>
 		<input hidden type="number" min="0" th:field="*{cantidad_en_stock}" />
 		<div>
-			<button type="submit">Guardar</button>
-			<a href="/productos/">Cancelar</a>
+			<button type="submit" class="btn btn-success">Guardar</button>
+			<a class="btn btn-danger" href="/productos/">Cancelar</a>
 		</div>
 	</form>
 </body>

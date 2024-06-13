@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html layout:decorate="~{layout}">
 
 <head>
 	<meta charset="UTF-8">
 	<title>Crear producto</title>
 </head>
 
-<body>
+<body layout:fragment="main-content">
+	<h1>Crear nuevo producto</h1>
 	<form action="#" th:action="@{/productos/}" th:object="${producto}" method="post">
-		<p>Código: <input type="text" maxlength="6" minlength="6" th:field="*{codigo}" /></p>
+		<p>Código: <input type="text" maxlength="6" minlength="6" th:field="*{codigo}" placeholder="00000x" /></p>
 		<p th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}">Código tiene errores</p>
 
 		<p>Nombre: <input type="text" th:field="*{nombre}" /></p>
@@ -24,13 +25,16 @@
 		<p th:if="${#fields.hasErrors('precioVenta')}" th:errors="*{precioVenta}">Precio de venta tiene errores</p>
 
 		<p>Cantidad en stock: <input type="number" min="0" th:field="*{cantidad_en_stock}" /></p>
-		<p th:if="${#fields.hasErrors('cantidad_en_stock')}" th:errors="*{cantidad_en_stock}">Cantidad en stock tiene
+		<p th:if="${#fields.hasErrors('cantidad_en_stock')}" th:errors="*{cantidad_en_stock}">Cantidad en stock
+			tiene
 			errores</p>
 
 		<p>Stock mínimo: <input type="number" min="0" th:field="*{cantidadMinima}" /></p>
-		<p th:if="${#fields.hasErrors('cantidadMinima')}" th:errors="*{cantidadMinima}">Stock mínimo tiene errores</p>
+		<p th:if="${#fields.hasErrors('cantidadMinima')}" th:errors="*{cantidadMinima}">Stock mínimo tiene errores
+		</p>
 
-		<input type="submit" />
+		<button type="submit" class="btn btn-success">Crear</button>
+		<a class="btn btn-danger" href="/productos/">Cancelar</a>
 	</form>
 </body>
 
