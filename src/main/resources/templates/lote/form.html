@@ -1,41 +1,68 @@
 <!DOCTYPE html>
-<html>
+<html layout:decorate="~{layout}">
 
 <head>
 	<meta charset="UTF-8">
 	<title>Crear nuevo lote</title>
+	<style>
+		.main {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: stretch;
+		}
+
+		.option {
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+		}
+	</style>
 </head>
 
-<body>
-	<form th:action="@{/lotes/create}" th:object="${lote}" method="post">
-		<div>
-			<label>Cantidad: </label>
-			<input type="number" min="0" th:field="*{cantidad}" />
-			<p th:if="${#fields.hasErrors('cantidad')}" th:errors="{cantidad}">Cantidad tiene errores</p>
-		</div>
-		<div>
-			<label>Fecha de Ingreso: </label>
-			<input type="date" th:field="*{fechaIngreso}" />
-			<p th:if="${#fields.hasErrors('fechaIngreso')}" th:errors="{fechaIngreso}">Fecha de ingreso tiene errores
-			</p>
-		</div>
-		<div>
-			<label>Proveedor: </label>
-			<input type="text" th:field="*{proveedor}" />
-			<p th:if="${#fields.hasErrors('proveedor')}" th:errors="{proveedor}">Proveedor tiene errores</p>
-		</div>
-		<div>
-			<label>Precio de Compra: </label>
-			<input type="number" step="1" th:field="*{precioCompra}" />
-			<p th:if="${#fields.hasErrors('precioCompra')}" th:errors="{precioCompra}">Precio de compra tiene errores
-			</p>
-		</div>
-		<input type="hidden" th:field="*{producto.idProducto}" />
-		<div>
-			<button type="submit">Guardar</button>
-			<a href="/productos/">Cancelar</a>
-		</div>
-	</form>
+<body layout:fragment="main-content">
+	<div class="container-sm main">
+
+		<h1>Crear nuevo lote</h1>
+		<form th:action="@{/lotes/create}" th:object="${lote}" method="post">
+			<div class="option">
+				<label>Cantidad: </label>
+				<input type="number" min="0" th:field="*{cantidad}" />
+				<p th:if="${#fields.hasErrors('cantidad')}" th:errors="{cantidad}">Cantidad tiene errores</p>
+			</div>
+			<div class="option">
+				<label>Fecha de Ingreso: </label>
+				<input type="date" th:field="*{fechaIngreso}" />
+				<p th:if="${#fields.hasErrors('fechaIngreso')}" th:errors="{fechaIngreso}">Fecha de ingreso tiene
+					errores
+				</p>
+			</div>
+			<div class="option">
+				<label>Proveedor: </label>
+				<input type="text" th:field="*{proveedor}" />
+				<p th:if="${#fields.hasErrors('proveedor')}" th:errors="{proveedor}">Proveedor tiene errores</p>
+			</div>
+			<div class="option">
+				<label>Precio de Compra: </label>
+				<input type="number" step="1" th:field="*{precioCompra}" />
+				<p th:if="${#fields.hasErrors('precioCompra')}" th:errors="{precioCompra}">Precio de compra tiene
+					errores
+				</p>
+			</div>
+			<input type="hidden" th:field="*{producto.idProducto}" />
+			<div class="option my-4">
+				<button type="submit" class="btn btn-success">Crear</button>
+				<a class="btn btn-danger" href="/productos/">Cancelar</a>
+			</div>
+		</form>
+	</div>
 </body>
 
 </html>

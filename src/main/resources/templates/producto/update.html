@@ -1,44 +1,69 @@
 <!DOCTYPE html>
-<html>
+<html layout:decorate="~{layout}">
 
 <head>
 	<meta charset="UTF-8">
 	<title>Actualizar producto</title>
+	<style>
+		.main {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: stretch;
+		}
+
+		.option {
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+		}
+	</style>
 </head>
 
-<body>
-	<form th:action="@{/productos/update/{idProducto}(idProducto=${producto.idProducto})}" th:object="${producto}"
-		method="post">
-		<div>
-			<label>Código: </label>
-			<input type="text" maxlength="6" minlength="6" th:field="*{codigo}" />
-		</div>
-		<div>
-			<label>Nombre: </label>
-			<input type="text" th:field="*{nombre}" />
-		</div>
-		<div>
-			<label>Descripción: </label>
-			<input type="text" th:field="*{descripcion}" />
-		</div>
-		<div>
-			<label>Costo: </label>
-			<input type="number" min="1" th:field="*{costo}" />
-		</div>
-		<div>
-			<label>Precio de venta: </label>
-			<input type="number" min="1" th:field="*{precioVenta}" />
-		</div>
-		<div>
-			<label>Stock mínimo: </label>
-			<input type="number" min="0" th:field="*{cantidadMinima}" />
-		</div>
-		<input hidden type="number" min="0" th:field="*{cantidad_en_stock}" />
-		<div>
-			<button type="submit">Guardar</button>
-			<a href="/productos/">Cancelar</a>
-		</div>
-	</form>
+<body layout:fragment="main-content">
+	<div class="container-sm main">
+
+		<h1>Actualizar producto</h1>
+		<form th:action="@{/productos/update/{idProducto}(idProducto=${producto.idProducto})}" th:object="${producto}"
+			method="post">
+			<div class="option">
+				<label>Código: </label>
+				<input type="text" maxlength="6" minlength="6" th:field="*{codigo}" />
+			</div>
+			<div class="option">
+				<label>Nombre: </label>
+				<input type="text" th:field="*{nombre}" />
+			</div>
+			<div class="option">
+				<label>Descripción: </label>
+				<input type="text" th:field="*{descripcion}" />
+			</div>
+			<div class="option">
+				<label>Costo: </label>
+				<input type="number" min="1" th:field="*{costo}" />
+			</div>
+			<div class="option">
+				<label>Precio de venta: </label>
+				<input type="number" min="1" th:field="*{precioVenta}" />
+			</div>
+			<div class="option">
+				<label>Stock mínimo: </label>
+				<input type="number" min="0" th:field="*{cantidadMinima}" />
+			</div>
+			<input hidden type="number" min="0" th:field="*{cantidad_en_stock}" />
+			<div class="option my-3">
+				<button type="submit" class="btn btn-success">Guardar</button>
+				<a class="btn btn-danger" href="/productos/">Cancelar</a>
+			</div>
+		</form>
+	</div>
 </body>
 
 </html>
