@@ -4,38 +4,74 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Crear producto</title>
+	<style>
+		.main {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+
+		form {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: stretch;
+		}
+
+		.option {
+			display: flex;
+			justify-content: space-around;
+			align-items: center;
+		}
+	</style>
 </head>
 
 <body layout:fragment="main-content">
-	<h1>Crear nuevo producto</h1>
-	<form action="#" th:action="@{/productos/}" th:object="${producto}" method="post">
-		<p>Código: <input type="text" maxlength="6" minlength="6" th:field="*{codigo}" placeholder="00000x" /></p>
-		<p th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}">Código tiene errores</p>
+	<div class="container-sm main">
 
-		<p>Nombre: <input type="text" th:field="*{nombre}" /></p>
-		<p th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Nombre tiene errores</p>
-
-		<p>Descripción: <input type="text" th:field="*{descripcion}" /></p>
-		<p th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}">Descripción tiene errores</p>
-
-		<p>Costo: <input type="number" min="1" th:field="*{costo}" /></p>
-		<p th:if="${#fields.hasErrors('costo')}" th:errors="*{costo}">Costo tiene errores</p>
-
-		<p>Precio de venta: <input type="number" min="1" th:field="*{precioVenta}" /></p>
-		<p th:if="${#fields.hasErrors('precioVenta')}" th:errors="*{precioVenta}">Precio de venta tiene errores</p>
-
-		<p>Cantidad en stock: <input type="number" min="0" th:field="*{cantidad_en_stock}" /></p>
-		<p th:if="${#fields.hasErrors('cantidad_en_stock')}" th:errors="*{cantidad_en_stock}">Cantidad en stock
-			tiene
-			errores</p>
-
-		<p>Stock mínimo: <input type="number" min="0" th:field="*{cantidadMinima}" /></p>
-		<p th:if="${#fields.hasErrors('cantidadMinima')}" th:errors="*{cantidadMinima}">Stock mínimo tiene errores
-		</p>
-
-		<button type="submit" class="btn btn-success">Crear</button>
-		<a class="btn btn-danger" href="/productos/">Cancelar</a>
-	</form>
+		<h1>Crear nuevo producto</h1>
+		<form action="#" th:action="@{/productos/}" th:object="${producto}" method="post">
+			<div class="option">
+				<p>Código: <input type="text" maxlength="6" minlength="6" th:field="*{codigo}" placeholder="00000x" />
+				</p>
+				<p th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}">Código tiene errores</p>
+			</div>
+			<div class="option">
+				<p>Nombre: <input type="text" th:field="*{nombre}" /></p>
+				<p th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">Nombre tiene errores</p>
+			</div>
+			<div class="option">
+				<p>Descripción: <input type="text" th:field="*{descripcion}" /></p>
+				<p th:if="${#fields.hasErrors('descripcion')}" th:errors="*{descripcion}">Descripción tiene errores</p>
+			</div>
+			<div class="option">
+				<p>Costo: <input type="number" min="1" th:field="*{costo}" /></p>
+				<p th:if="${#fields.hasErrors('costo')}" th:errors="*{costo}">Costo tiene errores</p>
+			</div>
+			<div class="option">
+				<p>Precio de venta: <input type="number" min="1" th:field="*{precioVenta}" /></p>
+				<p th:if="${#fields.hasErrors('precioVenta')}" th:errors="*{precioVenta}">Precio de venta tiene errores
+				</p>
+			</div>
+			<div class="option">
+				<p>Cantidad en stock: <input type="number" min="0" th:field="*{cantidad_en_stock}" /></p>
+				<p th:if="${#fields.hasErrors('cantidad_en_stock')}" th:errors="*{cantidad_en_stock}">Cantidad en stock
+					tiene
+					errores</p>
+			</div>
+			<div class="option">
+				<p>Stock mínimo: <input type="number" min="0" th:field="*{cantidadMinima}" /></p>
+				<p th:if="${#fields.hasErrors('cantidadMinima')}" th:errors="*{cantidadMinima}">Stock mínimo tiene
+					errores
+				</p>
+			</div>
+			<div class="option my-3">
+				<button type="submit" class="btn btn-success">Crear</button>
+				<a class="btn btn-danger" href="/productos/">Cancelar</a>
+			</div>
+		</form>
+	</div>
 </body>
 
 </html>
