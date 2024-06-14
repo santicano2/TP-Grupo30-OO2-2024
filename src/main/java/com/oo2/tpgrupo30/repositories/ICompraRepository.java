@@ -7,10 +7,13 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.oo2.tpgrupo30.entities.Compra;
+import com.oo2.tpgrupo30.entities.Producto;
 
 @Repository("compraRepository")
 public interface ICompraRepository extends JpaRepository<Compra, Serializable> {
     public abstract Compra findByIdCompra(int id);
 
     public abstract List<Compra> findByProductoIdProducto(int idProducto);
+    
+    public abstract void deleteByProducto(Producto producto);
 }
