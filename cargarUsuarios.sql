@@ -2,5 +2,5 @@ INSERT INTO `tpgrupo30`.`usuario` (`id_usuario`, `clave`, `created_at`, `nombre`
 INSERT INTO `tpgrupo30`.`usuario` (`id_usuario`, `clave`, `created_at`, `nombre`) VALUES ('2', '$2a$10$glgH62ezxxM08N3HsMy5X.WVnN3C8V2lPy1LckQL7dhCMg0T3MPsS', '2024-05-01 12:00:00.000000', 'admin');
 INSERT INTO `tpgrupo30`.`usuario_roles` (`id`, `createdat`, `rol`, `updatedat`, `id_user`) VALUES ('1', '2024-05-01 12:00:00.000000', 'ROLE_USER', '2024-05-01 12:00:00.000000', '1');
 INSERT INTO `tpgrupo30`.`usuario_roles` (`id`, `createdat`, `rol`, `updatedat`, `id_user`) VALUES ('2', '2024-05-01 12:00:00.000000', 'ROLE_ADMIN', '2024-05-01 12:00:00.000000', '2');
-INSERT INTO `tpgrupo30`.`producto` (`id_producto`, `cantidad_en_stock`, `codigo`, `costo`, `descripcion`, `nombre`, `precio_venta`) VALUES ('1', '10', '000001', '200', 'Zapas', 'Zapatilla Nike', '500');
-INSERT INTO `tpgrupo30`.`producto` (`id_producto`, `cantidad_en_stock`, `codigo`, `costo`, `descripcion`, `nombre`, `precio_venta`) VALUES ('2', '4', '000002', '500', 'Zapas', 'Zapatilla Adidas', '1000');
+INSERT INTO `tpgrupo30`.`producto` (`id_producto`, `cantidad_en_stock`, `codigo`, `costo`, `descripcion`, `nombre`, `precio_venta`,`cantidad_minima`) VALUES ('1', '10', '000001', '200', 'Zapas', 'Zapatilla Nike', '500','5');
+INSERT INTO `tpgrupo30`.`producto` (`id_producto`, `cantidad_en_stock`, `codigo`, `costo`, `descripcion`, `nombre`, `precio_venta`,`cantidad_minima`) VALUES ('2', '4', '000002', '500', 'Zapas', 'Zapatilla Adidas', '1000','10');

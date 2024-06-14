@@ -8,12 +8,30 @@
 	<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
 	<!-- Custom styles for this template -->
 	<link href="/css/modern-business.css" rel="stylesheet" />
+	<style>
+		html,
+		body {
+			height: 100%;
+			margin: 0;
+			padding: 0;
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+
+		.main-content {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			padding-top: 300px;
+		}
+	</style>
 </head>
 
 <body>
-	<!-- Navigation -->
 	<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
-		<div class="container">
+		<div class="container-fluid">
 			<a class="navbar-brand" href="/index">HOME</a>
 			<button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"
 				class="navbar-toggler navbar-toggler-right" data-target="#navbarResponsive" data-toggle="collapse"
@@ -29,6 +47,9 @@
 					<li class="nav-item">
 						<a class="nav-link" href="/compras/list">VER COMPRAS</a>
 					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="/lotes/">VER LOTES</a>
+					</li>
 					<li class="nav-item dropdown"><a aria-expanded="false" aria-haspopup="true"
 							class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="navbarDropdownBlog">
 							Usuario
@@ -36,79 +57,25 @@
 						</a>
 						<div aria-labelledby="navbarDropdownBlog" class="dropdown-menu dropdown-menu-right">
 							<form th:action="@{/logout}" method="post">
-								<input class="dropdown-item" style="cursor: pointer" type="submit" value="Logout" />
+								<input class="dropdown-item" style="cursor: pointer" type="submit"
+									value="Cerrar sesión" />
 							</form>
-							<a class="dropdown-item" href="/person">CRUD Person</a>
 						</div>
 					</li>
 				</ul>
 			</div>
 		</div>
 	</nav>
-	<header>
-		<div class="carousel slide" data-ride="carousel" id="carouselExampleIndicators">
-			<ol class="carousel-indicators">
-				<li class="active" data-slide-to="0" data-target="#carouselExampleIndicators">&nbsp;</li>
-				<li data-slide-to="1" data-target="#carouselExampleIndicators">&nbsp;</li>
-				<li data-slide-to="2" data-target="#carouselExampleIndicators">&nbsp;</li>
-			</ol>
-			<div class="carousel-inner" role="listbox">
-				<!-- Slide One - Set the background image for this slide in the line below -->
-				<div class="carousel-item active" style="background-image: url('http://placehold.it/1900x1080')">
-					<div class="carousel-caption d-none d-md-block">
-						<h3>First Slide</h3>
-						<p>This is a description for the first slide.</p>
-					</div>
-				</div>
-				<!-- Slide Two - Set the background image for this slide in the line below -->
-				<div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
-					<div class="carousel-caption d-none d-md-block">
-						<h3>Second Slide</h3>
-						<p>This is a description for the second slide.</p>
-					</div>
-				</div>
-				<!-- Slide Three - Set the background image for this slide in the line below -->
-				<div class="carousel-item" style="background-image: url('http://placehold.it/1900x1080')">
-					<div class="carousel-caption d-none d-md-block">
-						<h3>Third Slide</h3>
-						<p>This is a description for the third slide.</p>
-					</div>
-				</div>
-			</div>
-			<a class="carousel-control-prev" data-slide="prev" href="#carouselExampleIndicators" role="button"><span
-					class="sr-only">Previous</span> </a> <a class="carousel-control-next" data-slide="next"
-				href="#carouselExampleIndicators" role="button">
-				<span class="sr-only">Next</span>
-			</a>
-		</div>
-	</header>
-	<!-- Page Content -->
-	<footer class="py-5 bg-dark">
-		<div class="container">
-			<p class="m-0 text-center text-white">Copyright &copy; Your
-				Website 2024</p>
+	<main class="main-content container-fluid">
+		<h1>Sistema de stock</h1>
+	</main>
+	<footer class="py-3 bg-dark">
+		<div>
+			<p class="m-0 text-center text-white">UNLa - OO2 - TP Grupo 30 - 2024</p>
 		</div>
 	</footer>
-	<!-- Bootstrap core JavaScript -->
 	<script src="/vendor/jquery/jquery.min.js"></script>
 	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-	<script type="text/javascript">
-		$("#select-person").change(function () {
-			var personId = $("#select-person").val();
-			if ($.isNumeric(personId)) {
-				$.ajax({ //https://api.jquery.com/jquery.ajax/ => Examples:
-					method: "GET",
-					url: "/person/partial/" + personId,
-				})
-					.done(function (result) {
-						$("#div-select-person").html(result);
-					})
-					.fail(function () {
-						alert("error");
-					});
-			} else $("#div-select-person").html("");
-		});
-	</script>
 </body>
 
 </html>

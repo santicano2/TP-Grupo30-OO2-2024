@@ -36,7 +36,7 @@ public class CompraController {
 		model.addAttribute("productos", productService.getAll());
 		return ViewRouteHelper.COMPRA_FORM;
 	}
-
+  
 	@PostMapping("/create")
 	public String create(@Valid @ModelAttribute("compra") Compra compra, BindingResult bindingResult, Model model) {
 		if (bindingResult.hasErrors()) {
@@ -66,5 +66,4 @@ public class CompraController {
         model.addObject("compras", compraService.getAll());
         return model;
     }
-
 }

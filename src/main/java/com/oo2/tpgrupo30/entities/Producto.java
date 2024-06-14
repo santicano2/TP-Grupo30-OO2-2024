@@ -1,5 +1,6 @@
 package com.oo2.tpgrupo30.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.validator.constraints.Length;
@@ -48,6 +49,9 @@ public class Producto {
 	@Column(name = "cantidad_en_stock", nullable = false)
 	private int cantidad_en_stock;
 
+	@Column(name = "cantidad_minima", nullable = false)
+	private int cantidadMinima;
+
 	@OneToMany(mappedBy = "producto", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Lote> lotes;
+	private List<Lote> lotes = new ArrayList<>();
 }

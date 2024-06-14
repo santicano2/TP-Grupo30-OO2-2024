@@ -1,38 +1,63 @@
-<table>
-	<thead>
-		<tr>
-			<th>Código</th>
-			<th>Nombre</th>
-			<th>Descripción</th>
-			<th>Costo</th>
-			<th>Precio de venta</th>
-			<th>Cantidad en stock</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr th:each="producto : ${productos}">
-			<td><span th:text="${producto.codigo}" /></td>
-			<td><span th:text="${producto.nombre}" /></td>
-			<td><span th:text="${producto.descripcion}" /></td>
-			<td><span th:text="${producto.costo}" /></td>
-			<td><span th:text="${producto.precioVenta}" /></td>
-			<td><span th:text="${producto.cantidad_en_stock}" /></td>
-			<td>
-				<button><a th:href="@{/productos/edit/{id}(id=${producto.idProducto})}">EDITAR</a></button>
-				<form th:action="@{/productos/delete/{id}(id=${producto.idProducto})}" method="post"
-					style="display:inline;">
-					<button type="submit">ELIMINAR</button>
-				</form>
-			</td>
-		</tr>
-	</tbody>
-</table>
-<form action="#" th:action="@{/productos/}" th:object="${producto}" method="post">
-	<p>Código: <input type="text" maxlength="6" minlength="6" th:field="${producto.codigo}" /></p>
-	<p>Nombre: <input type="text" th:field="${producto.nombre}" /></p>
-	<p>Descripción: <input type="text" th:field="${producto.descripcion}" /></p>
-	<p>Costo: <input type="number" min="1" th:field="${producto.costo}" /></p>
-	<p>Precio de venta: <input type="number" min="1" th:field="${producto.precioVenta}" /></p>
-	<p>Cantidad en stock: <input type="number" min="0" th:field="${producto.cantidad_en_stock}" /></p>
-	<input type="submit" />
-</form>
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Productos</title>
+</head>
+
+<body layout:fragment="main-content">
+	<h1>Productos</h1>
+	<table class="table table-striped table-hover">
+		<thead>
+			<tr>
+				<th>Codigo</th>
+				<th>Nombre</th>
+				<th>Descripción</th>
+				<th>Costo</th>
+				<th>Precio de venta</th>
+				<th>Cantidad en stock</th>
+				<th>Acciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="producto : ${productos}">
+				<td><span th:text="${producto.codigo}" /></td>
+				<td><span th:text="${producto.nombre}" /></td>
+				<td><span th:text="${producto.descripcion}" /></td>
+				<td><span th:text="${producto.costo}" /></td>
+				<td><span th:text="${producto.precioVenta}" /></td>
+				<td style="font-weight: bold">
+					<span th:if="${producto.cantidad_en_stock == 0}" style="color:red">Sin stock</span>
+					<span
+						th:if="${producto.cantidad_en_stock > 0 and producto.cantidad_en_stock <= producto.cantidadMinima}"
+						style="color:red">Alerta de stock bajo (Stock: <span
+							th:text="${producto.cantidad_en_stock}" />)</span>
+					<span th:if="${producto.cantidad_en_stock > producto.cantidadMinima}"
+						th:text="${producto.cantidad_en_stock}"></span>
+				</td>
+				<td>
+					<a class="btn btn-primary btn-sm"
+						th:href="@{/productos/edit/{id}(id=${producto.idProducto})}">EDITAR</a>
+					<form th:action="@{/productos/delete/{id}(id=${producto.idProducto})}" method="post"
+						style="display:inline;">
+						<button type="submit" class="btn btn-danger btn-sm">ELIMINAR</button>
+					</form>
+					<a class="btn btn-secondary btn-sm"
+						th:href="@{/lotes/list/{productoId}(productoId=${producto.idProducto})}">LOTES</a>
+					<span
+						th:if="${producto.cantidad_en_stock == 0 or producto.cantidad_en_stock <= producto.cantidadMinima}">
+						<a class="btn btn-info my-1 btn-sm"
+							th:href="@{/lotes/form/{productoId}(productoId=${producto.idProducto})}">REABASTECER</a>
+					</span>
+					<a class="btn btn-warning btn-sm"
+						th:if="${!(producto.cantidad_en_stock == 0 or producto.cantidad_en_stock <= producto.cantidadMinima)}"
+						th:href="@{/lotes/form/{productoId}(productoId=${producto.idProducto})}">CREAR LOTE</a>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<a class="btn btn-success" th:href="@{/productos/form}">NUEVO PRODUCTO</a>
+</body>
+
+</html>
