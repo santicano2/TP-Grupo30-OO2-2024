@@ -27,8 +27,7 @@ public class InventarioController {
         model.addAttribute("productoMasVendido", productoMasVendido);
         model.addAttribute("productoMasVendidoVentas", cantidadVentasProductoMasVendido);
         model.addAttribute("productoMasAntiguo", inventarioService.obtenerProductoMasAntiguo());
-        model.addAttribute("fechaAntiguedadProductoMasAntiguo",
-                inventarioService.obtenerFechaAntiguedadProductoMasAntiguo());
+        model.addAttribute("fechaAntiguedadProductoMasAntiguo", inventarioService.obtenerFechaAntiguedadProductoMasAntiguo());
         model.addAttribute("productos", inventarioService.obtenerTodosLosProductos());
         model.addAttribute("valorTotalInventario", inventarioService.calcularValorTotalInventario());
         return ViewRouteHelper.INVENTARIO_INDEX;
