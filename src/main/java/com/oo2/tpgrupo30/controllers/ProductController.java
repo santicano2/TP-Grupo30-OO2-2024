@@ -91,8 +91,9 @@ public class ProductController {
 	}
 
 	@PostMapping("/delete/{idProducto}")
-	public String deleteProducto(@PathVariable("idProducto") int idProducto) {
-		productService.remove(idProducto);
-		return "redirect:/productos/";
-	}
+    public String deleteProducto(@PathVariable("idProducto") int idProducto) {
+        productService.eliminarProducto(idProducto);
+        return "redirect:/productos/";
+    }
+	
 }
