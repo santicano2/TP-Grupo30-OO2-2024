@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html layout:decorate="~{layout}">
-	
+
 <head>
 	<meta charset="UTF-8">
 	<title>Informe de Inventario</title>
 	<style>
 		main {
-		            display: flex;
-		            flex-direction: column;
-		            justify-content: space-between;
-		        }
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
 	</style>
 </head>
 
@@ -18,7 +18,7 @@
 		<h1>Informe de Inventario</h1>
 		<div>
 			<h2>Producto más vendido</h2>
-			<p th:if="${productoMasVendido != null}">
+			<p class="alert alert-success" th:if="${productoMasVendido != null}">
 				<span th:text="${productoMasVendido.nombre}"></span> -
 				<span th:text="${productoMasVendidoVentas}"></span> ventas
 			</p>
@@ -27,7 +27,7 @@
 
 		<div>
 			<h2>Producto más antiguo en inventario</h2>
-			<p th:if="${productoMasAntiguo != null}">
+			<p class="alert alert-success" th:if="${productoMasAntiguo != null}">
 				<span th:text="${productoMasAntiguo.nombre}"></span> -
 				<span th:text="${fechaAntiguedadProductoMasAntiguo}"></span>
 			</p>
@@ -55,7 +55,7 @@
 						<td th:text="${producto.descripcion}"></td>
 						<td th:text="${producto.costo}"></td>
 						<td th:text="${producto.precioVenta}"></td>
-						<td>
+						<td style="font-weight: bold">
 							<span th:if="${producto.cantidad_en_stock == 0}">Sin stock</span>
 							<span
 								th:if="${producto.cantidad_en_stock > 0 and producto.cantidad_en_stock <= producto.cantidadMinima}"
@@ -72,7 +72,7 @@
 		</div>
 		<div>
 			<h2>Valor total del inventario</h2>
-			<p th:text="${valorTotalInventario}"></p>
+			<p class="alert alert-success" th:text="${valorTotalInventario}"></p>
 		</div>
 	</main>
 </body>
