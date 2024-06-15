@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Informe de Inventario</title>
+	<style>
+		main {
+			display: flex;
+			flex-direction: column;
+			justify-content: space-between;
+		}
+	</style>
+</head>
+
+<body layout:fragment="main-content">
+	<main>
+		<h1>Informe de Inventario</h1>
+		<div>
+			<h2>Producto más vendido</h2>
+			<p class="alert alert-success" th:if="${productoMasVendido != null}">
+				<span th:text="${productoMasVendido.nombre}"></span> -
+				<span th:text="${productoMasVendidoVentas}"></span> ventas
+			</p>
+			<p th:if="${productoMasVendido == null}">No disponible</p>
+		</div>
+
+		<div>
+			<h2>Producto más antiguo en inventario</h2>
+			<p class="alert alert-success" th:if="${productoMasAntiguo != null}">
+				<span th:text="${productoMasAntiguo.nombre}"></span> -
+				<span th:text="${fechaAntiguedadProductoMasAntiguo}"></span>
+			</p>
+			<p th:if="${productoMasAntiguo == null}">No disponible</p>
+		</div>
+		<div>
+			<h2>Valor total del inventario actual</h2>
+			<p class="alert alert-success" th:text="${valorTotalInventario} + ' $'"></p>
+			<h2>Valor total de compras realizadas</h2>
+			<p class="alert alert-success" th:text="${valorTotalCompras} + ' $'"></p>
+		</div>
+		<div>
+			<h2>Lista de productos</h2>
+			<table class="table table-striped table-hover">
+				<thead>
+					<tr>
+						<th>Código</th>
+						<th>Nombre</th>
+						<th>Descripción</th>
+						<th>Costo</th>
+						<th>Precio de venta</th>
+						<th>Cantidad en stock</th>
+						<th>Ventas</th>
+						<th>Rotación</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="producto : ${productos}">
+						<td th:text="${producto.codigo}"></td>
+						<td th:text="${producto.nombre}"></td>
+						<td th:text="${producto.descripcion}"></td>
+						<td th:text="${producto.costo}"></td>
+						<td th:text="${producto.precioVenta}"></td>
+						<td style="font-weight: bold">
+							<span th:if="${producto.cantidad_en_stock == 0}">Sin stock</span>
+							<span
+								th:if="${producto.cantidad_en_stock > 0 and producto.cantidad_en_stock <= producto.cantidadMinima}"
+								style="color:red">Alerta de stock bajo (Stock: <span
+									th:text="${producto.cantidad_en_stock}" />)</span>
+							<span th:if="${producto.cantidad_en_stock > producto.cantidadMinima}"
+								th:text="${producto.cantidad_en_stock}"></span>
+						</td>
+						<td th:text="${@inventarioService.calcularCantidadComprada(producto)}"></td>
+						<td th:text="${@inventarioService.calcularRotacionInventario(producto) + ' días'}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</main>
+</body>
+
+</html>

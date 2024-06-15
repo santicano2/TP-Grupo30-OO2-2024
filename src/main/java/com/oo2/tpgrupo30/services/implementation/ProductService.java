@@ -6,19 +6,25 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import com.oo2.tpgrupo30.entities.Producto;
+import com.oo2.tpgrupo30.repositories.ICompraRepository;
 import com.oo2.tpgrupo30.repositories.IProductRepository;
 import com.oo2.tpgrupo30.services.IProductService;
+
+import jakarta.transaction.Transactional;
 
 @Service("productService")
 public class ProductService implements IProductService {
 
 	private IProductRepository productRepository;
+	
+	private ICompraRepository compraRepository;
 
 	private ModelMapper modelMapper = new ModelMapper();
 
-	public ProductService(IProductRepository productRepository) {
+	public ProductService(IProductRepository productRepository, ICompraRepository compraRepository) {
 
 		this.productRepository = productRepository;
+		this.compraRepository = compraRepository;
 	}
 
 	@Override
@@ -48,5 +54,17 @@ public class ProductService implements IProductService {
 			return false;
 		}
 	}
+	
+	@Transactional
+    public void eliminarProducto(int idProducto) {
+        Producto producto = productRepository.findById(idProducto).orElse(null);
+        if (producto != null) {
+            // Eliminar todas las compras asociadas al producto
+            compraRepository.deleteByProducto(producto);
+
+            // Luego eliminar el producto
+            productRepository.delete(producto);
+        }
+    }
 
 }

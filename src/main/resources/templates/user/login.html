@@ -1,32 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
-    <meta charset="utf-8" />
-    <title>UNLa</title>
-    <!-- Bootstrap core CSS -->
-    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="/css/modern-business.css" rel="stylesheet" />
+	<meta charset="utf-8" />
+	<title>Sistema de Stock - Iniciar sesión</title>
+	<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="/css/modern-business.css" rel="stylesheet" />
 </head>
 
 <body>
-    <!-- Page Content -->
-    <div class="container">
-        <div class="jumbotron">
-            <h1 class="display-5">Login</h1>
-            <form th:action="@{/loginprocess}" method="post">
-                <input type="text" name="username" id="username" placeholder="Username" />
-                <input type="password" name="password" id="password" placeholder="Password" />
-                <input type="submit" />
-            </form>
-            <div th:if="${error != null}" class="alert alert-danger">
-                Invalid username or password.
-            </div>
-        </div>
-    </div>
-    <!-- Bootstrap core JavaScript -->
-    <script src="/vendor/jquery/jquery.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+	<div class="container d-flex justify-content-center align-items-center">
+		<div class="jumbotron">
+			<h1 class="display-5">Iniciar sesión</h1>
+			<form th:action="@{/loginprocess}" method="post" class="d-flex flex-column">
+				<input type="text" name="username" id="username" placeholder="Usuario" class="p-1 my-1" />
+				<input type="password" name="password" id="password" placeholder="Contraseña" class="p-1 my-1" />
+				<button type="submit" class="btn btn-success my-2">Iniciar sesión</button>
+			</form>
+			<div th:if="${error != null}" class="alert alert-danger">
+				Usuario o contraseña incorrectos.
+			</div>
+		</div>
+	</div>
+	<script src="/vendor/jquery/jquery.min.js"></script>
+	<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

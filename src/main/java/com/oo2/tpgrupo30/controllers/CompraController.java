@@ -55,7 +55,7 @@ public class CompraController {
 		}
 
 		compraService.insertOrUpdate(compra);
-		return "redirect:/index";
+		return ViewRouteHelper.COMPRA_NEW;
 	}
 	
 	@GetMapping("/list")

@@ -31,14 +31,11 @@ public class ProductController {
 
 	@GetMapping("/")
 	public ModelAndView index() {
-
 		ModelAndView model = new ModelAndView(ViewRouteHelper.PRODUCT_INDEX);
 		model.addObject("productos", productService.getAll());
 		model.addObject("producto", new Producto());
 		return model;
 	}
-	
-
 
 	@PostMapping("/")
 	public RedirectView create(@ModelAttribute("producto") Producto producto) {
@@ -94,8 +91,9 @@ public class ProductController {
 	}
 
 	@PostMapping("/delete/{idProducto}")
-	public String deleteProducto(@PathVariable("idProducto") int idProducto) {
-		productService.remove(idProducto);
-		return "redirect:/productos/";
-	}
+    public String deleteProducto(@PathVariable("idProducto") int idProducto) {
+        productService.eliminarProducto(idProducto);
+        return "redirect:/productos/";
+    }
+	
 }

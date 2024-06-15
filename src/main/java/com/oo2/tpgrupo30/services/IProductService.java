@@ -13,5 +13,7 @@ public interface IProductService {
 	public Producto insertOrUpdate(Producto productoModel);
 
 	public boolean remove(int id);
+	
+	public void eliminarProducto(int idProducto);
 
 }
