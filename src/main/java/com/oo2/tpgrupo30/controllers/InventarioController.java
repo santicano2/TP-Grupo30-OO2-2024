@@ -30,6 +30,7 @@ public class InventarioController {
         model.addAttribute("fechaAntiguedadProductoMasAntiguo", inventarioService.obtenerFechaAntiguedadProductoMasAntiguo());
         model.addAttribute("productos", inventarioService.obtenerTodosLosProductos());
         model.addAttribute("valorTotalInventario", inventarioService.calcularValorTotalInventario());
+        model.addAttribute("valorTotalCompras", inventarioService.calcularValorTotalCompras());
         return ViewRouteHelper.INVENTARIO_INDEX;
     }
 }

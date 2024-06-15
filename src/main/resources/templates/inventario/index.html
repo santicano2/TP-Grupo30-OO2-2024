@@ -34,6 +34,12 @@
 			<p th:if="${productoMasAntiguo == null}">No disponible</p>
 		</div>
 		<div>
+			<h2>Valor total del inventario actual</h2>
+			<p class="alert alert-success" th:text="${valorTotalInventario} + ' $'"></p>
+			<h2>Valor total de compras realizadas</h2>
+			<p class="alert alert-success" th:text="${valorTotalCompras} + ' $'"></p>
+		</div>
+		<div>
 			<h2>Lista de productos</h2>
 			<table class="table table-striped table-hover">
 				<thead>
@@ -69,10 +75,6 @@
 					</tr>
 				</tbody>
 			</table>
-		</div>
-		<div>
-			<h2>Valor total del inventario</h2>
-			<p class="alert alert-success" th:text="${valorTotalInventario}"></p>
 		</div>
 	</main>
 </body>

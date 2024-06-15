@@ -91,4 +91,10 @@ public class InventarioService {
 		return productos.stream().mapToDouble(producto -> producto.getCantidad_en_stock() * producto.getPrecioVenta())
 				.sum();
 	}
+
+	public double calcularValorTotalCompras() {
+		List<Compra> compras = compraRepository.findAll();
+		return compras.stream().mapToDouble(compra -> compra.getCantidad() * compra.getProducto().getPrecioVenta())
+				.sum();
+	}
 }
